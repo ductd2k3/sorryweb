@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>I'm Sorry</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        background: linear-gradient(to bottom, #ff9a9e, #fad0c4);
+        height: 100vh;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .container {
+        text-align: center;
+        padding: 20px;
+      }
+
+      .card {
+        background: #fff;
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        max-width: 400px;
+        margin: auto;
+        text-align: center;
+      }
+
+      .card h1 {
+        font-size: 2rem;
+        color: #d32f2f;
+      }
+
+      .card p {
+        font-size: 1rem;
+        color: #555;
+        margin-top: 10px;
+      }
+
+      button {
+        margin-top: 15px;
+        padding: 10px 20px;
+        background: #d32f2f;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1rem;
+      }
+
+      button:hover {
+        background: #b71c1c;
+      }
+
+      .hidden {
+        display: none;
+        margin-top: 20px;
+      }
+
+      #thank-you {
+        font-size: 1.2rem;
+        color: #388e3c;
+      }
+
+      .fa-heart-broken {
+        color: #d32f2f;
+      }
+
+      .fa-smile-beam {
+        color: #ffcc00;
+      }
+      .bubble {
+        position: absolute;
+        bottom: 0;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 99, 71, 0.8);
+        border-radius: 50%;
+        animation: rise 5s linear infinite;
+        z-index: 1;
+      }
+
+      @keyframes rise {
+        0% {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        100% {
+          transform: translateY(-120vh);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <i class="fa fa-heart-broken fa-3x"></i>
+        <h1>Xin lỗi...</h1>
+        <p>
+          Mình đã sai, và mình thực sự rất hối hận vì điều đó. Làm ơn hãy tha
+          lỗi cho mình! 🙏
+        </p>
+        <button onclick="showMessage()">Tha thứ cho mình nhé</button>
+        <div id="thank-you" class="hidden">
+          <p>
+            <i class="fa fa-smile-beam"></i> Cảm ơn bạn vì đã hiểu cho mình! ❤️
+          </p>
+        </div>
+      </div>
+    </div>
+    <script>
+      function showMessage() {
+        const container = document.querySelector(".container");
+
+        // Tạo bong bóng
+        for (let i = 0; i < 20; i++) {
+          const bubble = document.createElement("div");
+          bubble.classList.add("bubble");
+          bubble.style.left = Math.random() * 100 + "%";
+          bubble.style.animationDuration = Math.random() * 2 + 3 + "s"; // Thời gian bay
+          container.appendChild(bubble);
+
+          // Xóa bong bóng sau khi hoàn thành
+          bubble.addEventListener("animationend", () => {
+            bubble.remove();
+          });
+        }
+
+        // Hiện thông báo cảm ơn
+        const thankYouMessage = document.getElementById("thank-you");
+        thankYouMessage.innerHTML = `
+    <video width="300" controls autoplay style="margin: 10px 0; border-radius: 10px;">
+      <source src="assets/sorry.mp4" type="video/mp4">
+      Trình duyệt của bạn không hỗ trợ phát video.
+    </video>
+    <p><i class="fa fa-smile-beam"></i> Cảm ơn bạn vì đã hiểu cho mình! ❤️</p>
+  `;
+        thankYouMessage.classList.remove("hidden");
+      }
+    </script>
+  </body>
+</html>
